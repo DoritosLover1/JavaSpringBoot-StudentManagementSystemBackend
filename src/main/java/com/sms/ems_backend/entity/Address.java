@@ -1,0 +1,36 @@
+package com.sms.ems_backend.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "addresses")
+public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int address_id;
+
+    @Column
+    private String street;
+
+    @Column
+    private String city;
+
+    @Column
+    private String state;
+
+    @Column
+    private String zip;
+
+    @Column
+    private String country;
+
+}
