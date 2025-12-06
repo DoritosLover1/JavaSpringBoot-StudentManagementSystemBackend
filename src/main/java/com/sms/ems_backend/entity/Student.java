@@ -18,15 +18,19 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int student_id;
+    private Integer student_id;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Person person;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn()
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "student_lessons",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "lesson_id")
+    )
     private List<Lesson> lessons;
 
     @Column
-    private int number_of_lessons;
+    private Integer number_of_lessons;
 }

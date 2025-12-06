@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonDto {
-    private int person_id;
+    private Integer person_id;
     private String name;
     private String email;
     private List<Address> address;

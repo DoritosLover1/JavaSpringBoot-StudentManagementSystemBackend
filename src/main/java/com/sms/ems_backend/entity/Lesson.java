@@ -19,7 +19,7 @@ public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int lesson_id;
+    private Integer lesson_id;
 
     @Column
     private String lesson_name;
@@ -34,13 +34,12 @@ public class Lesson {
     private String lesson_description;
 
     @Column
-    private int number_of_students;
+    private Integer number_of_students;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn
+    @ManyToMany(mappedBy = "lessons")
     private List<Student> students;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "professor_id")
     private Professor professor;
 }

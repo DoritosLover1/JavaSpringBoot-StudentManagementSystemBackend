@@ -18,16 +18,15 @@ public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int professor_id;
+    private Integer professor_id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Person person;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Lesson> lessons;
 
     @Column
-    private int number_of_lessons;
+    private Integer number_of_lessons;
 }

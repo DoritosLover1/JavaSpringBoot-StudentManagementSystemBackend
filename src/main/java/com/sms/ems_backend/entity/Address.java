@@ -16,7 +16,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int address_id;
+    private Integer address_id;
 
     @Column
     private String street;
@@ -33,4 +33,7 @@ public class Address {
     @Column
     private String country;
 
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
 }

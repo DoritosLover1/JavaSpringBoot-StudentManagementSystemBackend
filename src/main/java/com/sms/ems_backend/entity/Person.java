@@ -18,7 +18,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int person_id;
+    private Integer person_id;
 
     @Column
     private String name;
@@ -26,7 +26,6 @@ public class Person {
     @Column
     private String email;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
     private List<Address> address;
 }

@@ -3,7 +3,13 @@ package com.sms.ems_backend.service;
 import com.sms.ems_backend.dto.StudentDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface StudentService {
     StudentDto createStudent(StudentDto studentDto);
+
+    StudentDto getStudentById(int id);
+
+    List<StudentDto> createStudents(List<StudentDto> studentDtoList);
 }

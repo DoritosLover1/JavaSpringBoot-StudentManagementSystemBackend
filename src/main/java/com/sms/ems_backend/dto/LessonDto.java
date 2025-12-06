@@ -14,12 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LessonDto {
-    private int lesson_id;
+    private Integer lesson_id;
     private String lesson_name;
     private String lesson_place;
     private String lesson_date;
     private String lesson_description;
-    private int number_of_students;
+    private Integer number_of_students;
     private List<Student> students;
     private Professor professor;
 }

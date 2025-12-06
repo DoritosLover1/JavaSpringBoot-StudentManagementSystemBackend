@@ -14,8 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProfessorDto {
-    private int person_id;
+    private Integer person_id;
     private Person person;
     private List<Lesson> lessons;
-    private int number_of_lessons;
+    private Integer number_of_lessons;
 }

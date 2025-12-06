@@ -12,7 +12,8 @@ public class AddressMapper {
                 address.getCity(),
                 address.getState(),
                 address.getZip(),
-                address.getCountry()
+                address.getCountry(),
+                address.getPerson()
         );
     }
 
@@ -23,7 +24,8 @@ public class AddressMapper {
                 addressDto.getCity(),
                 addressDto.getState(),
                 addressDto.getZip(),
-                addressDto.getCountry()
+                addressDto.getCountry(),
+                addressDto.getPerson()
         );
     }
 }
