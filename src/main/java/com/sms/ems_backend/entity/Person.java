@@ -1,5 +1,6 @@
 package com.sms.ems_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ public class Person {
     @Column
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference("person-address")
     private List<Address> address;
 }

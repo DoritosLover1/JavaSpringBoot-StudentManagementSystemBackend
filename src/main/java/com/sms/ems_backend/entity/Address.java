@@ -1,5 +1,6 @@
 package com.sms.ems_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,5 +36,6 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "person_id")
+    @JsonBackReference("person-address")
     private Person person;
 }

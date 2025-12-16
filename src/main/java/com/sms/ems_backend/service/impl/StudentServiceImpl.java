@@ -1,8 +1,11 @@
 package com.sms.ems_backend.service.impl;
 
+import com.sms.ems_backend.dto.LessonDto;
 import com.sms.ems_backend.dto.StudentDto;
+import com.sms.ems_backend.entity.Lesson;
 import com.sms.ems_backend.entity.Student;
 import com.sms.ems_backend.exception.ResourceNotFoundException;
+import com.sms.ems_backend.mapper.LessonMapper;
 import com.sms.ems_backend.mapper.StudentMapper;
 import com.sms.ems_backend.repository.StudentRepository;
 import com.sms.ems_backend.service.StudentService;
@@ -11,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -32,6 +37,38 @@ public class StudentServiceImpl implements StudentService {
         Student gottenStudent = studentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Student is not exist with given id: " + id));
         return StudentMapper.mapToStudentDto(gottenStudent);
+    }
+
+    @Override
+    public List<StudentDto> getAllStudents() {
+        List<Student> studentList = studentRepository.findAll();
+        return studentList.stream().map(StudentMapper::mapToStudentDto)
+                .collect(Collectors.toList());
+    }
+
+    // Düzeltilecek bunlar
+    @Override
+    public StudentDto updateStudentPersonById(int id, StudentDto studentDto) {
+         Student student = studentRepository.findById(id).orElseThrow(
+                 () -> new ResourceNotFoundException("Student is not exist with given id: " + id)
+         );
+
+         student.setPerson(studentDto.getPerson());
+
+         return StudentMapper.mapToStudentDto(studentRepository.save(student));
+    }
+
+    // Düzeltilecek bunlar
+    @Override
+    public StudentDto updateStudentLessonById(int id, List<LessonDto> lessonDto) {
+        Student student = studentRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Student is not exist with given id: " + id)
+        );
+
+        student.setLessons(lessonDto.stream().map(LessonMapper::mapToLesson)
+                .collect(Collectors.toList()));
+
+        return StudentMapper.mapToStudentDto(studentRepository.save(student));
     }
 
     @Override

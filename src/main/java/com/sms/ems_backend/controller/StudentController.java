@@ -1,5 +1,6 @@
 package com.sms.ems_backend.controller;
 
+import com.sms.ems_backend.dto.LessonDto;
 import com.sms.ems_backend.dto.StudentDto;
 import com.sms.ems_backend.service.StudentService;
 import lombok.AllArgsConstructor;
@@ -28,9 +29,16 @@ public class StudentController {
         return new ResponseEntity<>(savedStudents, HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<StudentDto> getAllStudents() {
-        return new ResponseEntity<>(new StudentDto(),HttpStatus.FOUND);
+    @GetMapping("/get-all-students")
+    public ResponseEntity<List<StudentDto>> getAllStudents() {
+        List<StudentDto> savedStudents = studentService.getAllStudents();
+        return new ResponseEntity<>(savedStudents, HttpStatus.FOUND);
+    }
+
+    @PostMapping("/update-student-lessons/by/{id}")
+    public ResponseEntity<StudentDto> updateStudentLessonById(@PathVariable("id") int id, @RequestBody List<LessonDto> lessonDto) {
+        StudentDto studentDto = studentService.updateStudentLessonById(id, lessonDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
     @GetMapping("/get-student/by/{id}")

@@ -1,5 +1,6 @@
 package com.sms.ems_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Professor {
     private Person person;
 
     @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference("professor-lessons")
     private List<Lesson> lessons;
 
     @Column

@@ -1,5 +1,6 @@
 package com.sms.ems_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Student {
     private Integer student_id;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     private Person person;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -29,6 +31,7 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "lesson_id")
     )
+    @JsonManagedReference("student-lessons")
     private List<Lesson> lessons;
 
     @Column

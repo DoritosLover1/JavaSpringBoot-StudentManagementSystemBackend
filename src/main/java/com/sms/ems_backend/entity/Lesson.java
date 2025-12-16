@@ -1,5 +1,6 @@
 package com.sms.ems_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,9 +38,11 @@ public class Lesson {
     private Integer number_of_students;
 
     @ManyToMany(mappedBy = "lessons")
+    @JsonBackReference("student-lessons")
     private List<Student> students;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "professor_id")
+    @JsonBackReference("professor-lessons")
     private Professor professor;
 }
