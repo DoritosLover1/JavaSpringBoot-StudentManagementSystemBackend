@@ -1,6 +1,7 @@
 package com.sms.ems_backend.service;
 
 import com.sms.ems_backend.dto.LessonDto;
+import com.sms.ems_backend.dto.PersonDto;
 import com.sms.ems_backend.dto.StudentDto;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public interface StudentService {
 
     List<StudentDto> createStudents(List<StudentDto> studentDtoList);
 
-    StudentDto updateStudentPersonById(int id, StudentDto studentDto);
+    StudentDto updateStudentPersonById(int id, PersonDto personDto);
 
     StudentDto updateStudentLessonById(int id, List<LessonDto> lessonDto);
 }

@@ -1,11 +1,13 @@
 package com.sms.ems_backend.service.impl;
 
 import com.sms.ems_backend.dto.LessonDto;
+import com.sms.ems_backend.dto.PersonDto;
 import com.sms.ems_backend.dto.StudentDto;
 import com.sms.ems_backend.entity.Lesson;
 import com.sms.ems_backend.entity.Student;
 import com.sms.ems_backend.exception.ResourceNotFoundException;
 import com.sms.ems_backend.mapper.LessonMapper;
+import com.sms.ems_backend.mapper.PersonMapper;
 import com.sms.ems_backend.mapper.StudentMapper;
 import com.sms.ems_backend.repository.StudentRepository;
 import com.sms.ems_backend.service.StudentService;
@@ -48,12 +50,12 @@ public class StudentServiceImpl implements StudentService {
 
     // Düzeltilecek bunlar
     @Override
-    public StudentDto updateStudentPersonById(int id, StudentDto studentDto) {
+    public StudentDto updateStudentPersonById(int id, PersonDto personDto) {
          Student student = studentRepository.findById(id).orElseThrow(
                  () -> new ResourceNotFoundException("Student is not exist with given id: " + id)
          );
 
-         student.setPerson(studentDto.getPerson());
+         student.setPerson(PersonMapper.mapToPerson(personDto));
 
          return StudentMapper.mapToStudentDto(studentRepository.save(student));
     }

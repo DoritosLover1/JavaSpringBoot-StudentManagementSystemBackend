@@ -1,6 +1,7 @@
 package com.sms.ems_backend.controller;
 
 import com.sms.ems_backend.dto.LessonDto;
+import com.sms.ems_backend.dto.PersonDto;
 import com.sms.ems_backend.dto.StudentDto;
 import com.sms.ems_backend.service.StudentService;
 import lombok.AllArgsConstructor;
@@ -38,6 +39,12 @@ public class StudentController {
     @PostMapping("/update-student-lessons/by/{id}")
     public ResponseEntity<StudentDto> updateStudentLessonById(@PathVariable("id") int id, @RequestBody List<LessonDto> lessonDto) {
         StudentDto studentDto = studentService.updateStudentLessonById(id, lessonDto);
+        return new ResponseEntity<>(studentDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/update-student-person/by/{id}")
+    public ResponseEntity<StudentDto> updateStudentPersonById(@PathVariable("id") int id, @RequestBody PersonDto personDto) {
+        StudentDto studentDto = studentService.updateStudentPersonById(id, personDto);
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
