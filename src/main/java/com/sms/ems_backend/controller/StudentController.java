@@ -36,13 +36,13 @@ public class StudentController {
         return new ResponseEntity<>(savedStudents, HttpStatus.FOUND);
     }
 
-    @PostMapping("/update-student-lessons/by/{id}")
+    @PutMapping("/update-student-lessons/by/{id}")
     public ResponseEntity<StudentDto> updateStudentLessonById(@PathVariable("id") int id, @RequestBody List<LessonDto> lessonDto) {
         StudentDto studentDto = studentService.updateStudentLessonById(id, lessonDto);
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
     }
 
-    @PostMapping("/update-student-person/by/{id}")
+    @PutMapping("/update-student-person/by/{id}")
     public ResponseEntity<StudentDto> updateStudentPersonById(@PathVariable("id") int id, @RequestBody PersonDto personDto) {
         StudentDto studentDto = studentService.updateStudentPersonById(id, personDto);
         return new ResponseEntity<>(studentDto, HttpStatus.OK);
@@ -52,6 +52,12 @@ public class StudentController {
     public ResponseEntity<StudentDto> getStudentById(@PathVariable("id") int id) {
         StudentDto studentDto = studentService.getStudentById(id);
         return ResponseEntity.ok(studentDto);
+    }
+
+    @DeleteMapping("/delete-student/by/{id}")
+    public ResponseEntity<HttpStatus> deleteStudentById(@PathVariable("id") int id) {
+        studentService.deleteStudentById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

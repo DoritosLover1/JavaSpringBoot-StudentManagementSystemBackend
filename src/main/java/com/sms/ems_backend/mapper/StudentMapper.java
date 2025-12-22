@@ -10,7 +10,9 @@ public class StudentMapper {
                 student.getStudent_id(),
                 student.getPerson(),
                 student.getLessons(),
-                student.getNumber_of_lessons()
+                student.getNumber_of_lessons(),
+                student.getFaculty(),
+                student.getMajor()
         );
     }
 
@@ -19,7 +21,9 @@ public class StudentMapper {
                 studentDto.getStudent_id(),
                 studentDto.getPerson(),
                 studentDto.getLessons(),
-                studentDto.getNumber_of_lessons()
+                studentDto.getNumber_of_lessons(),
+                studentDto.getFaculty(),
+                studentDto.getMajor()
         );
     }
 }

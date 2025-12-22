@@ -20,4 +20,6 @@ public interface StudentService {
     StudentDto updateStudentPersonById(int id, PersonDto personDto);
 
     StudentDto updateStudentLessonById(int id, List<LessonDto> lessonDto);
+
+    void deleteStudentById(int id);
 }

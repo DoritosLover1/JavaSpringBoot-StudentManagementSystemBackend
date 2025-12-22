@@ -83,4 +83,12 @@ public class StudentServiceImpl implements StudentService {
         }
         return savedStudentDtoList;
     }
+
+    @Override
+    public void deleteStudentById(int id) {
+        Student student = studentRepository.findById(id).orElseThrow(
+                () ->  new ResourceNotFoundException("Student is not exist with given id: " + id)
+        );
+        studentRepository.deleteById(id);
+    }
 }

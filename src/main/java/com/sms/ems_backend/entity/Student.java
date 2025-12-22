@@ -36,4 +36,10 @@ public class Student {
 
     @Column
     private Integer number_of_lessons;
+
+    @Column
+    private String faculty;
+
+    @Column
+    private String major;
 }
